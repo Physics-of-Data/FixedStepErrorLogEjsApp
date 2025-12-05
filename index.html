@@ -30,8 +30,8 @@
       (async function () {
         const statusDiv = document.getElementById('status');
         try {
-          statusDiv.textContent = 'Initializing CheerpJ...';
-          await cheerpjInit();
+          statusDiv.textContent = 'Initializing CheerpJ (Java 11)...';
+          await cheerpjInit({version: 11});
 
           statusDiv.textContent = 'Creating display...';
           cheerpjCreateDisplay(1280, 1024);
