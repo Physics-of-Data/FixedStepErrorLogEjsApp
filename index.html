@@ -44,7 +44,7 @@
           console.log('GitHub Pages project path includes repository name');
 
           statusDiv.textContent = 'Starting Java application...';
-          console.log('Calling cheerpjRunJar with:', jarPath);
+          console.log('Calling cheerpjRunMain with class and dependencies');
 
           // Set a timeout to detect if app hangs
           const timeout = setTimeout(() => {
@@ -52,7 +52,11 @@
             statusDiv.textContent = 'Application loading (this may take 30-60 seconds)...';
           }, 5000);
 
-          await cheerpjRunJar(jarPath);
+          // Try with explicit class and osp.jar dependency
+          await cheerpjRunMain(
+            "dev.opensourcephysics.ode.basic_examples.sho.FixedStepErrorLogEjsApp",
+            "/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar:/app/FixedStepErrorLogEjsApp/lib/osp.jar"
+          );
 
           clearTimeout(timeout);
           statusDiv.textContent = 'Application started successfully!';

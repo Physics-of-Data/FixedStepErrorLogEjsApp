@@ -36,10 +36,11 @@
           statusDiv.textContent = 'Loading SHOApp...';
           console.log('Loading traditional SimulationControl version');
 
-          // Run the SimulationControl version which should work like lorenz-lyapunov
+          // Run the SimulationControl version with osp.jar as dependency
+          // Use colon-separated paths for multiple JARs (application:library)
           await cheerpjRunMain(
             "org.opensourcephysics.ode.basic_examples.sho.SHOApp",
-            "/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar"
+            "/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar:/app/FixedStepErrorLogEjsApp/lib/osp.jar"
           );
 
           statusDiv.textContent = 'SHOApp started!';
