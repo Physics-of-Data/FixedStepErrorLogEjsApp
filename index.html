@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Fixed Step Error LogEjsApp</title>
+    <title>SHO Fixed-Step Error Log (EJS)</title>
     <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
     <style>
       body {
@@ -25,47 +25,29 @@
     </style>
   </head>
   <body>
-    <div id="status">Loading CheerpJ runtime...</div>
+    <div id="status">Initializing application...</div>
     <script>
       (async function () {
         const statusDiv = document.getElementById('status');
         try {
-          statusDiv.textContent = 'Initializing CheerpJ (Java 11)...';
+          statusDiv.textContent = 'Loading CheerpJ...';
           await cheerpjInit({version: 11});
 
-          statusDiv.textContent = 'Creating display...';
+          statusDiv.textContent = 'Starting application (this may take 30-60 seconds)...';
           cheerpjCreateDisplay(1280, 1024);
 
-          statusDiv.textContent = 'Loading JAR file...';
-
-          // For GitHub Pages project sites, use full path with repo name
-          const jarPath = '/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar';
-          console.log('Attempting to load:', jarPath);
-          console.log('GitHub Pages project path includes repository name');
-
-          statusDiv.textContent = 'Starting Java application...';
-          console.log('Calling cheerpjRunMain with class and dependencies');
-
-          // Set a timeout to detect if app hangs
-          const timeout = setTimeout(() => {
-            console.warn('Application seems to be taking a long time to start...');
-            statusDiv.textContent = 'Application loading (this may take 30-60 seconds)...';
-          }, 5000);
-
-          // Try with explicit class and osp.jar dependency
+          // Load with explicit osp.jar dependency (required for EJS applications)
           await cheerpjRunMain(
             "dev.opensourcephysics.ode.basic_examples.sho.FixedStepErrorLogEjsApp",
             "/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar:/app/FixedStepErrorLogEjsApp/lib/osp.jar"
           );
 
-          clearTimeout(timeout);
-          statusDiv.textContent = 'Application started successfully!';
-          console.log('cheerpjRunJar completed');
+          statusDiv.textContent = 'Application ready!';
           setTimeout(() => statusDiv.style.display = 'none', 3000);
         } catch (error) {
           console.error('Error loading application:', error);
           statusDiv.className = 'error';
-          statusDiv.textContent = 'Error: ' + error.message + ' (Check console for details - Press F12)';
+          statusDiv.textContent = 'Error loading application. Please refresh the page.';
         }
       })();
     </script>
