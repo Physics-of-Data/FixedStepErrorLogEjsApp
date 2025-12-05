@@ -38,10 +38,10 @@
 
           statusDiv.textContent = 'Loading JAR file...';
 
-          // CheerpJ uses /app/ virtual filesystem for files in the same directory as HTML
-          const jarPath = '/app/FixedStepErrorLogEjsApp.jar';
+          // For GitHub Pages project sites, use full path with repo name
+          const jarPath = '/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar';
           console.log('Attempting to load:', jarPath);
-          console.log('Note: /app/ is CheerpJ virtual filesystem mapped to current directory');
+          console.log('GitHub Pages project path includes repository name');
 
           statusDiv.textContent = 'Starting Java application...';
           console.log('Calling cheerpjRunJar with:', jarPath);
