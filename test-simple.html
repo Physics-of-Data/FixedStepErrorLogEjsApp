@@ -34,9 +34,9 @@
           cheerpjCreateDisplay(800, 600);
 
           statusDiv.textContent = 'Loading simple test...';
-          console.log('Loading SimpleTest.jar');
+          console.log('Loading SimpleTest.jar with /app/ virtual filesystem');
 
-          await cheerpjRunJar("./SimpleTest.jar");
+          await cheerpjRunJar("/app/SimpleTest.jar");
 
           statusDiv.textContent = 'SimpleTest started!';
         } catch (error) {

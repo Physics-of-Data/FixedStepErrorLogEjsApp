@@ -38,25 +38,13 @@
 
           statusDiv.textContent = 'Loading JAR file...';
 
-          // Try to verify the JAR is accessible
-          const jarPath = './FixedStepErrorLogEjsApp.jar';
+          // CheerpJ uses /app/ virtual filesystem for files in the same directory as HTML
+          const jarPath = '/app/FixedStepErrorLogEjsApp.jar';
           console.log('Attempting to load:', jarPath);
-          console.log('Full URL would be:', window.location.href + jarPath.substring(2));
-
-          // Try fetching to verify it exists
-          try {
-            const response = await fetch(jarPath, { method: 'HEAD' });
-            console.log('JAR file fetch status:', response.status);
-            if (!response.ok) {
-              throw new Error('JAR file not found (status: ' + response.status + ')');
-            }
-          } catch (fetchError) {
-            console.error('Cannot access JAR file:', fetchError);
-            throw new Error('JAR file not accessible at ' + jarPath);
-          }
+          console.log('Note: /app/ is CheerpJ virtual filesystem mapped to current directory');
 
           statusDiv.textContent = 'Starting Java application...';
-          console.log('Calling cheerpjRunJar...');
+          console.log('Calling cheerpjRunJar with:', jarPath);
 
           // Set a timeout to detect if app hangs
           const timeout = setTimeout(() => {
