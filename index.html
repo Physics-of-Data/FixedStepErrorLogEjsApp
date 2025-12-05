@@ -37,9 +37,25 @@
           cheerpjCreateDisplay(1280, 1024);
 
           statusDiv.textContent = 'Loading JAR file...';
-          console.log('Attempting to load: ./FixedStepErrorLogEjsApp.jar');
 
-          await cheerpjRunJar("./FixedStepErrorLogEjsApp.jar");
+          // Try to verify the JAR is accessible
+          const jarPath = './FixedStepErrorLogEjsApp.jar';
+          console.log('Attempting to load:', jarPath);
+          console.log('Full URL would be:', window.location.href + jarPath.substring(2));
+
+          // Try fetching to verify it exists
+          try {
+            const response = await fetch(jarPath, { method: 'HEAD' });
+            console.log('JAR file fetch status:', response.status);
+            if (!response.ok) {
+              throw new Error('JAR file not found (status: ' + response.status + ')');
+            }
+          } catch (fetchError) {
+            console.error('Cannot access JAR file:', fetchError);
+            throw new Error('JAR file not accessible at ' + jarPath);
+          }
+
+          await cheerpjRunJar(jarPath);
 
           statusDiv.textContent = 'Application started successfully!';
           setTimeout(() => statusDiv.style.display = 'none', 3000);
