@@ -10,7 +10,11 @@
       (async function () {
         await cheerpjInit();
         cheerpjCreateDisplay(800, 600);
-        await cheerpjRunJar("/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar");
+        cheerpjRunMain(
+  "dev.opensourcephysics.ode.basic_examples.sho.FixedStepErrorLogEjsApp",
+  "/app/FixedStepErrorLogEjsApp.jar:/app/FixedStepErrorLogEjsApp.jar"
+);
+        // await cheerpjRunJar("/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar");
       })();
     </script>
   </body>
