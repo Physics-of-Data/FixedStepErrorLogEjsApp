@@ -2,20 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>CheerpJ Java App Example</title>
-    <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+    <title>Lorenz Lyapunov Derivative</title>
+    <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
   </head>
   <body>
     <script>
       (async function () {
         await cheerpjInit();
-        cheerpjCreateDisplay(800, 600);
-        cheerpjRunMain(
-  "dev.opensourcephysics.ode.basic_examples.sho.FixedStepErrorLogEjsApp",
-  "/app/FixedStepErrorLogEjsApp.jar"
-);
-        // await cheerpjRunJar("/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar");
+        cheerpjCreateDisplay(1280, 1024);
+        // run remotely
+        await cheerpjRunJar("/app/FixedStepErrorLogEjsApp/FixedStepErrorLogEjsApp.jar");
       })();
     </script>
   </body>
 </html>
+
